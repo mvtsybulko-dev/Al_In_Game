@@ -53,10 +53,11 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom < 0:
+                    self.bullets.remove(bullet)
             self.bullets.update()
             self._update_screen()
-
-
 
 
 if __name__ == "__main__":
