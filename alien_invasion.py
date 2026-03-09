@@ -27,6 +27,7 @@ class AlienInvasion:
             alien.rect.x = alien.x
             self.aliens.add(alien)
 
+
     def _check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
