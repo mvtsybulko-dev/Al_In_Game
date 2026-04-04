@@ -1,5 +1,3 @@
-from encodings.aliases import aliases
-
 import pygame
 import sys
 from time import sleep
