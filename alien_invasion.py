@@ -54,9 +54,12 @@ class AlienInvasion:
                 self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
-        if self.play_button.rect.collidepoint(mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stat.game_active:
+            self.settings.initialize_dynamic_settings()
             self.stat.reset_stats()
             self.stat.game_active = True
+            pygame.mouse.set_visible(False)
             self.aliens.empty()
             self.bullets.empty()
             self._create_fleet()
@@ -103,6 +106,7 @@ class AlienInvasion:
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _update_aliens(self):
         self._check_fleet_edges()
@@ -129,6 +133,7 @@ class AlienInvasion:
             sleep(1)
         else:
             self.stat.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_fleet_edges(self):
         for alien in self.aliens.sprites():
